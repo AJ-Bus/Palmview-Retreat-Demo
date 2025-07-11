@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PalmView Retreat Hotel - Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Welcome to PalmView Retreat Hotel</h1>
+    <p>Your peaceful escape in Chiang Mai</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Our Rooms</h2>
+      <ul>
+        <li><strong>Deluxe Room</strong>: $60/night — King bed, private balcony, garden view</li>
+        <li><strong>Family Suite</strong>: $85/night — Two bedrooms, kitchen, pool view</li>
+        <li><strong>Garden Bungalow</strong>: $75/night — Queen bed, garden patio, bathtub</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Amenities & Services</h2>
+      <ul>
+        <li>Swimming Pool</li>
+        <li>Spa & Massage Services</li>
+        <li>Fitness Center</li>
+        <li>Garden Lounge</li>
+        <li>Free Parking</li>
+        <li>Complimentary Breakfast</li>
+        <li>Airport Pickup</li>
+        <li>Room Service (7 AM - 10 PM)</li>
+        <li>Laundry Services</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Policies</h2>
+      <ul>
+        <li>Check-in: 2:00 PM</li>
+        <li>Check-out: 11:00 AM</li>
+        <li>Cancellation: 48 hours free cancellation</li>
+        <li>No pets allowed</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Contact Us</h2>
+      <p>Phone: +66 912 345 678</p>
+      <p>Email: bookings@palmviewretreat.com</p>
+      <p>WhatsApp: +66 912 345 678</p>
+    </section>
+  </main>
+
+  <button id="chat-toggle">Chat with us!</button>
+
+  <div id="chat-window" class="hidden">
+    <div id="chat-header">
+      <span>PalmView Assistant</span>
+      <button id="chat-close">&times;</button>
+    </div>
+    <div id="chat-messages"></div>
+    <form id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="chatbot.js"></script>
+</body>
+</html>
