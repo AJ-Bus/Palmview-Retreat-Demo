@@ -10,9 +10,48 @@ header, main {
   margin: auto;
 }
 
-h1, h2 {
+.hero {
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+  height: 100vh;
+  color: white;
   text-align: center;
-  color: #2c3e50;
+  padding-top: 150px;
+}
+.hero h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+.hero p {
+  font-size: 1.5rem;
+}
+.btn {
+  background: #009688;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+.rooms .room {
+  margin-bottom: 20px;
+}
+.amenities ul {
+  list-style: none;
+  padding: 0;
+}
+.amenities li {
+  margin-bottom: 10px;
+}
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
 
 ul {
