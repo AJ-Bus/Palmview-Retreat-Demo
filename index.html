@@ -6,13 +6,19 @@
   <title>Palmview Retreat Hotel</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 
-  <div class="hero">
-    <h1>Palmview Retreat Hotel</h1>
-    <p>Your tranquil escape in Chiang Mai, Thailand</p>
-    <a href="#rooms" class="btn">Explore Rooms</a>
+  <!-- Hero Section with AI CTA -->
+  <div class="hero" style="text-align: center; background-color: #f0f4f8; padding: 60px 20px;">
+    <h1 style="font-size: 2.5rem; margin-bottom: 10px;">🤖 Meet Palmview’s Smart AI Concierge</h1>
+    <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 20px;">
+      Our AI-powered assistant handles bookings, FAQs, and guest inquiries — 24/7. Save time, cut staff costs, and impress your guests.
+    </p>
+    <a href="#chat-toggle" style="display: inline-block; padding: 12px 25px; background-color: #0077cc; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
+      💬 Try the Live AI Chat Now
+    </a>
   </div>
 
   <section id="rooms" class="rooms">
@@ -43,12 +49,36 @@
     </ul>
   </section>
 
-  <footer>
+  <!-- Demo Video Section (optional placeholder) -->
+  <section style="padding: 40px 20px; text-align: center; background-color: #eef4fc;">
+    <h2 style="font-size: 1.8rem; margin-bottom: 15px;">🎥 Watch Our AI Concierge in Action</h2>
+    <p style="margin-bottom: 20px;">See how it answers questions, books rooms, and provides 24/7 support.</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+      title="AI Hotel Concierge Demo" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- Call-to-Action for Business Clients -->
+  <section style="padding: 50px 20px; background-color: #fff0e5; text-align: center;">
+    <h2 style="font-size: 2rem; margin-bottom: 10px;">Want This for Your Hotel or Airbnb?</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 25px;">We build AI agents tailored to your business — ready in 48 hours.</p>
+    <ul style="list-style: none; padding: 0; margin-bottom: 30px; font-size: 1rem;">
+      <li>✅ Handle bookings & FAQs</li>
+      <li>✅ Save on staffing costs</li>
+      <li>✅ Multilingual guest support</li>
+    </ul>
+    <a href="mailto:youragency@email.com" style="display: inline-block; padding: 12px 25px; background-color: #0077cc; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
+      📩 Book a Free Demo
+    </a>
+  </section>
+
+  <!-- Contact + Footer -->
+  <footer style="text-align: center; padding: 20px; font-size: 0.9rem; color: #666;">
     <p>📞 +66 912 345 678 | 📧 bookings@palmviewretreat.com</p>
     <p>&copy; 2025 Palmview Retreat Hotel. All rights reserved.</p>
+    <p>🚀 Powered by <strong>YourAgency</strong></p>
   </footer>
 
-  
+  <!-- Chatbot Widget -->
   <button id="chat-toggle">Chat with us!</button>
 
   <div id="chat-window" class="hidden">
@@ -63,7 +93,13 @@
     </form>
   </div>
 
+  <!-- Chat + Popup Scripts -->
   <script src="chatbot.js"></script>
+  <script>
+    setTimeout(() => {
+      alert("👋 Hi there! I'm your AI Concierge. Ask me anything about Palmview Retreat.");
+    }, 5000);
+  </script>
 
 </body>
 </html>
