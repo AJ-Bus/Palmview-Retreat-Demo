@@ -4,97 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Palmview Retreat Hotel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet"/>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background-color: #fdfdfd;
-      color: #333;
-    }
-
-    header {
-      background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      text-align: center;
-      padding: 100px 20px;
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3em;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
-
-    section {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .image-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .image-gallery img {
-      width: 300px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    footer {
-      background-color: #1e1e1e;
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    /* Chatbot floating button */
-    #chatbot {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header>
+  <div class="hero">
     <h1>Palmview Retreat Hotel</h1>
-    <p>Your serene escape in Chiang Mai, Thailand</p>
-  </header>
+    <p>Your tranquil escape in Chiang Mai, Thailand</p>
+    <a href="#rooms" class="btn">Explore Rooms</a>
+  </div>
 
-  <section>
-    <h2 style="text-align:center;">Our Rooms</h2>
-    <div class="image-gallery">
-      <img src="https://images.unsplash.com/photo-1613977257363-707ba934822b" alt="Deluxe Room">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Family Suite">
-      <img src="https://images.unsplash.com/photo-1582719478250-dc6aa6d4c342" alt="Garden Bungalow">
+  <section id="rooms" class="rooms">
+    <h2>Our Rooms</h2>
+    <div class="room">
+      <h3>Deluxe Room</h3>
+      <p>King bed, private balcony, garden view — $60/night</p>
+    </div>
+    <div class="room">
+      <h3>Family Suite</h3>
+      <p>Two bedrooms, kitchen, pool view — $85/night</p>
+    </div>
+    <div class="room">
+      <h3>Garden Bungalow</h3>
+      <p>Queen bed, garden patio, bathtub — $75/night</p>
     </div>
   </section>
 
-  <section>
-    <h2 style="text-align:center;">Amenities</h2>
-    <p style="text-align:center; max-width:700px; margin: 0 auto;">
-      Enjoy our outdoor pool, relaxing spa, modern fitness center, complimentary breakfast, and airport pickup service. All rooms come with free Wi-Fi, garden views, and more!
-    </p>
+  <section class="amenities">
+    <h2>Amenities</h2>
+    <ul>
+      <li>🌴 Swimming Pool</li>
+      <li>🧘 Spa & Massage Services</li>
+      <li>💪 Fitness Center</li>
+      <li>🛏️ Room Service (7 AM - 10 PM)</li>
+      <li>🍳 Complimentary Breakfast</li>
+      <li>🚐 Airport Pickup</li>
+    </ul>
   </section>
 
   <footer>
@@ -102,9 +48,10 @@
     <p>&copy; 2025 Palmview Retreat Hotel. All rights reserved.</p>
   </footer>
 
-  <!-- Your chatbot embed (add back here) -->
-  <!-- Example -->
-  <!-- <script src="YOUR-BOT-CODE.js" async></script> -->
+  <!-- Paste your chatbot embed script here -->
+  <!-- Example:
+  <script src="your-chatbot-code.js" async></script>
+  -->
 
 </body>
 </html>
