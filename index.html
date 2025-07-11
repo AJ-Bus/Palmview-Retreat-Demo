@@ -48,10 +48,22 @@
     <p>&copy; 2025 Palmview Retreat Hotel. All rights reserved.</p>
   </footer>
 
-  <!-- Paste your chatbot embed script here -->
-  <!-- Example:
-  <script src="your-chatbot-code.js" async></script>
-  -->
+  
+  <button id="chat-toggle">Chat with us!</button>
+
+  <div id="chat-window" class="hidden">
+    <div id="chat-header">
+      <span>PalmView Assistant</span>
+      <button id="chat-close">&times;</button>
+    </div>
+    <div id="chat-messages"></div>
+    <form id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="chatbot.js"></script>
 
 </body>
 </html>
