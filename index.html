@@ -2,113 +2,117 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PalmView AI Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Palmview Retreat Hotel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: #f0f8ff;
-      color: #333;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #ffffff;
+    }
+
+    h1, h2, h3 {
+      color: #2c3e50;
     }
 
     .hero {
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center/cover;
-      height: 220px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      text-align: center;
+      background-color: #f0f4f8;
+      padding: 60px 20px;
+    }
+
+    .hero a {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #0077cc;
       color: white;
-      text-shadow: 0 0 5px rgba(0,0,0,0.6);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .rooms, .amenities {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .room {
       margin-bottom: 20px;
     }
 
-    .hero h1 {
-      font-size: 2.5rem;
-      margin: 0;
+    ul {
+      list-style: none;
+      padding: 0;
     }
 
-    .hero p {
-      font-size: 1.2rem;
-      margin: 5px 0 0;
+    li {
+      margin-bottom: 10px;
     }
 
-    /* Floating chat button */
-    #chatbot-toggle {
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f8f8f8;
+    }
+
+    /* Chatbot styles */
+    #chat-toggle {
       position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: #0078d4;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 30px;
+      bottom: 20px;
+      right: 20px;
+      background-color: #0077cc;
       color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 20px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       z-index: 1000;
     }
 
-    /* Chatbot window */
-    #chatbot {
+    #chat-window {
       position: fixed;
-      bottom: 90px;
-      right: 25px;
+      bottom: 80px;
+      right: 20px;
       width: 320px;
-      max-height: 420px;
       background: white;
-      border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      border: 1px solid #ccc;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
       display: none;
       flex-direction: column;
       overflow: hidden;
       z-index: 1000;
     }
 
-    #chatbot-header {
-      background: #0078d4;
+    #chat-header {
+      background-color: #0077cc;
       color: white;
-      padding: 12px;
+      padding: 10px;
       font-weight: bold;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    #chatbot-messages {
-      flex: 1;
+    #chat-messages {
+      height: 200px;
       padding: 10px;
       overflow-y: auto;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
 
-    .message {
-      margin-bottom: 10px;
-      padding: 8px 12px;
-      border-radius: 18px;
-      max-width: 80%;
-      clear: both;
-    }
-
-    .user-message {
-      background-color: #e0e0e0;
-      float: right;
-      text-align: right;
-    }
-
-    .bot-message {
-      background-color: #0078d4;
-      color: white;
-      float: left;
-      text-align: left;
-    }
-
-    #chatbot-input-container {
+    #chat-form {
       display: flex;
       border-top: 1px solid #ccc;
     }
 
-    #chatbot-input {
+    #chat-input {
       flex: 1;
       padding: 10px;
       border: none;
@@ -116,67 +120,133 @@
       font-size: 1rem;
     }
 
-    #chatbot-send {
-      background: #0078d4;
-      border: none;
+    #chat-form button {
+      background-color: #0077cc;
       color: white;
-      padding: 0 20px;
+      border: none;
+      padding: 10px 15px;
       cursor: pointer;
-      font-size: 1rem;
+    }
+
+    .message {
+      margin-bottom: 10px;
+    }
+
+    .user {
+      text-align: right;
+      color: #0077cc;
+    }
+
+    .bot {
+      text-align: left;
+      color: #2c3e50;
     }
   </style>
 </head>
 <body>
 
+  <!-- Hero Section -->
   <div class="hero">
-    <h1>PalmView Retreat Hotel</h1>
-    <p>Your tranquil escape in Chiang Mai, Thailand</p>
+    <h1>🤖 Meet Palmview’s Smart AI Concierge</h1>
+    <p>
+      Our AI-powered assistant handles bookings, FAQs, and guest inquiries — 24/7.
+      Save time, cut staff costs, and impress your guests.
+    </p>
+    <a href="#chat-toggle">💬 Try the Live AI Chat Now</a>
   </div>
 
-  <!-- Floating Chat Button -->
-  <button id="chatbot-toggle" title="Chat with us!">💬</button>
-
-  <!-- Chatbot Window -->
-  <div id="chatbot" aria-live="polite" aria-atomic="true" role="log">
-    <div id="chatbot-header">PalmView Assistant</div>
-    <div id="chatbot-messages" aria-label="Chat messages"></div>
-    <div id="chatbot-input-container">
-      <input id="chatbot-input" type="text" placeholder="Ask something..." aria-label="Chat input" autocomplete="off" />
-      <button id="chatbot-send" aria-label="Send message">Send</button>
+  <!-- Rooms Section -->
+  <section id="rooms" class="rooms">
+    <h2>Our Rooms</h2>
+    <div class="room">
+      <h3>Deluxe Room</h3>
+      <p>King bed, private balcony, garden view — $60/night</p>
     </div>
+    <div class="room">
+      <h3>Family Suite</h3>
+      <p>Two bedrooms, kitchen, pool view — $85/night</p>
+    </div>
+    <div class="room">
+      <h3>Garden Bungalow</h3>
+      <p>Queen bed, garden patio, bathtub — $75/night</p>
+    </div>
+  </section>
+
+  <!-- Amenities Section -->
+  <section class="amenities">
+    <h2>Amenities</h2>
+    <ul>
+      <li>🌴 Swimming Pool</li>
+      <li>🧘 Spa & Massage Services</li>
+      <li>💪 Fitness Center</li>
+      <li>🛏️ Room Service (7 AM - 10 PM)</li>
+      <li>🍳 Complimentary Breakfast</li>
+      <li>🚐 Airport Pickup</li>
+    </ul>
+  </section>
+
+  <!-- Video Section -->
+  <section style="padding: 40px 20px; text-align: center; background-color: #eef4fc;">
+    <h2>🎥 Watch Our AI Concierge in Action</h2>
+    <p>See how it answers questions, books rooms, and provides 24/7 support.</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+      title="AI Hotel Concierge Demo" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- Call-to-Action for Clients -->
+  <section style="padding: 50px 20px; background-color: #fff0e5; text-align: center;">
+    <h2>Want This for Your Hotel or Airbnb?</h2>
+    <p>We build AI agents tailored to your business — ready in 48 hours.</p>
+    <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
+      <li>✅ Handle bookings & FAQs</li>
+      <li>✅ Save on staffing costs</li>
+      <li>✅ Multilingual guest support</li>
+    </ul>
+    <a href="mailto:youragency@email.com" style="padding: 12px 25px; background-color: #0077cc; color: white; border-radius: 8px; text-decoration: none;">
+      📩 Book a Free Demo
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>📞 +66 912 345 678 | 📧 bookings@palmviewretreat.com</p>
+    <p>&copy; 2025 Palmview Retreat Hotel. All rights reserved.</p>
+    <p>🚀 Powered by <strong>YourAgency</strong></p>
+  </footer>
+
+  <!-- Chatbot -->
+  <button id="chat-toggle">Chat with us!</button>
+
+  <div id="chat-window">
+    <div id="chat-header">
+      <span>PalmView Assistant</span>
+      <button id="chat-close">&times;</button>
+    </div>
+    <div id="chat-messages"></div>
+    <form id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
   </div>
 
+  <!-- Chatbot Scripts -->
   <script>
-    const chatbotToggle = document.getElementById('chatbot-toggle');
-    const chatbot = document.getElementById('chatbot');
-    const chatbotMessages = document.getElementById('chatbot-messages');
-    const chatbotInput = document.getElementById('chatbot-input');
-    const chatbotSend = document.getElementById('chatbot-send');
+    const toggleBtn = document.getElementById('chat-toggle');
+    const chatWindow = document.getElementById('chat-window');
+    const closeBtn = document.getElementById('chat-close');
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('chat-input');
+    const messages = document.getElementById('chat-messages');
 
-    // Toggle chat window visibility
-    chatbotToggle.addEventListener('click', () => {
-      if (chatbot.style.display === 'flex') {
-        chatbot.style.display = 'none';
-      } else {
-        chatbot.style.display = 'flex';
-        chatbotInput.focus();
-      }
-    });
+    toggleBtn.onclick = () => chatWindow.style.display = 'flex';
+    closeBtn.onclick = () => chatWindow.style.display = 'none';
 
-    // Function to append messages
-    function appendMessage(text, sender) {
-      const msg = document.createElement('div');
-      msg.classList.add('message');
-      msg.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-      msg.textContent = text;
-      chatbotMessages.appendChild(msg);
-      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-
-    // Send message and fetch reply
-    async function sendChatMessage(message) {
-      appendMessage(message, 'user');
-      appendMessage('Thinking...', 'bot');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = input.value.trim();
+      if (!message) return;
+      addMessage(message, 'user');
+      input.value = '';
 
       try {
         const res = await fetch('/chat', {
@@ -185,38 +255,25 @@
           body: JSON.stringify({ message })
         });
         const data = await res.json();
-
-        // Remove the "Thinking..." message
-        chatbotMessages.lastChild.remove();
-
-        if (data.reply) {
-          appendMessage(data.reply, 'bot');
-        } else {
-          appendMessage('Sorry, no response from the server.', 'bot');
-        }
-      } catch (error) {
-        chatbotMessages.lastChild.remove();
-        appendMessage('Oops, something went wrong.', 'bot');
-        console.error(error);
+        addMessage(data.reply, 'bot');
+      } catch (err) {
+        addMessage("Oops! Something went wrong.", 'bot');
       }
+    });
+
+    function addMessage(text, type) {
+      const div = document.createElement('div');
+      div.className = `message ${type}`;
+      div.textContent = text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
     }
 
-    // Send message on button click
-    chatbotSend.addEventListener('click', () => {
-      const message = chatbotInput.value.trim();
-      if (!message) return;
-      sendChatMessage(message);
-      chatbotInput.value = '';
-      chatbotInput.focus();
-    });
-
-    // Send message on Enter key
-    chatbotInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        chatbotSend.click();
-      }
-    });
+    // Optional welcome popup
+    setTimeout(() => {
+      alert("👋 Hi there! I'm your AI Concierge. Ask me anything about Palmview Retreat.");
+    }, 4000);
   </script>
+
 </body>
 </html>
