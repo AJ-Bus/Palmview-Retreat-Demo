@@ -3,22 +3,209 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PalmView AI Bot</title>
+  <title>PalmView Retreat</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+
+    header {
+      background: url('https://images.unsplash.com/photo-1501117716987-c8e1ecb315be?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      margin-top: 0.5rem;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #2d6a4f;
+      margin-bottom: 15px;
+    }
+
+    .rooms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .room {
+      flex: 1 1 260px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .room h3 {
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #2d6a4f;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: #40916c;
+    }
+
+    /* Floating Chatbot Button */
+    #chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #2d6a4f;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+    }
+
+    /* Chatbot Panel */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 320px;
+      background: white;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      padding: 15px;
+      z-index: 1000;
+    }
+
+    #chat-container input,
+    #chat-container button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    #response {
+      margin-top: 10px;
+      font-size: 14px;
+      min-height: 60px;
+    }
+
+    footer {
+      background: #2d6a4f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+  </style>
 </head>
 <body>
-  <h1>PalmView AI Bot</h1>
-  <input type="text" id="userInput" placeholder="Ask something..." />
-  <button onclick="sendMessage()">Send</button>
-  <p id="response"></p>
+
+  <header>
+    <div>
+      <h1>PalmView Retreat</h1>
+      <p>Relax, Recharge, Reconnect</p>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>About Us</h2>
+      <p>Welcome to PalmView Retreat, a tranquil escape nestled amidst nature. Our boutique resort offers luxurious rooms, personalized services, and modern amenities to help you unwind in style.</p>
+    </section>
+
+    <section>
+      <h2>Our Rooms</h2>
+      <div class="rooms">
+        <div class="room">
+          <h3>Deluxe Room</h3>
+          <p>$60/night – A cozy room with queen-sized bed, garden view, and private balcony.</p>
+        </div>
+        <div class="room">
+          <h3>Family Suite</h3>
+          <p>$85/night – Spacious suite for 4, includes kitchenette, lounge area, and twin bathrooms.</p>
+        </div>
+        <div class="room">
+          <h3>Garden Bungalow</h3>
+          <p>$75/night – A private stand-alone bungalow with outdoor seating and tropical views.</p>
+        </div>
+      </div>
+      <a href="#" class="btn">Book Now</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 PalmView Retreat. All rights reserved.</p>
+  </footer>
+
+  <!-- Chatbot Floating Button -->
+  <button id="chat-toggle">💬</button>
+
+  <!-- Chatbot Box -->
+  <div id="chat-container">
+    <input type="text" id="userInput" placeholder="Ask me anything..." />
+    <button onclick="sendMessage()">Send</button>
+    <p id="response"></p>
+  </div>
 
   <script>
+    const toggleBtn = document.getElementById("chat-toggle");
+    const chatContainer = document.getElementById("chat-container");
+
+    toggleBtn.addEventListener("click", () => {
+      chatContainer.style.display = chatContainer.style.display === "flex" ? "none" : "flex";
+    });
+
     async function sendMessage() {
       const message = document.getElementById('userInput').value;
       const responseElement = document.getElementById('response');
       responseElement.innerText = 'Thinking...';
 
       try {
-        const res = await fetch('http://localhost:5000/chat', {
+        const res = await fetch('/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -34,5 +221,6 @@
       }
     }
   </script>
+
 </body>
 </html>
