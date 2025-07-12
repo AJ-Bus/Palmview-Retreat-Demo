@@ -3,103 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Palmview Retreat Hotel</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="favicon.png">
+  <title>PalmView AI Bot</title>
 </head>
 <body>
+  <h1>PalmView AI Bot</h1>
+  <input type="text" id="userInput" placeholder="Ask something..." />
+  <button onclick="sendMessage()">Send</button>
+  <p id="response"></p>
 
-  <!-- Hero Section with AI CTA -->
-  <div class="hero" style="text-align: center; background-color: #f0f4f8; padding: 60px 20px;">
-    <h1 style="font-size: 2.5rem; margin-bottom: 10px;">🤖 Meet Palmview’s Smart AI Concierge</h1>
-    <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 20px;">
-      Our AI-powered assistant handles bookings, FAQs, and guest inquiries — 24/7. Save time, cut staff costs, and impress your guests.
-    </p>
-    <a href="#chat-toggle" style="display: inline-block; padding: 12px 25px; background-color: #0077cc; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
-      💬 Try the Live AI Chat Now
-    </a>
-  </div>
-
-  <section id="rooms" class="rooms">
-    <h2>Our Rooms</h2>
-    <div class="room">
-      <h3>Deluxe Room</h3>
-      <p>King bed, private balcony, garden view — $60/night</p>
-    </div>
-    <div class="room">
-      <h3>Family Suite</h3>
-      <p>Two bedrooms, kitchen, pool view — $85/night</p>
-    </div>
-    <div class="room">
-      <h3>Garden Bungalow</h3>
-      <p>Queen bed, garden patio, bathtub — $75/night</p>
-    </div>
-  </section>
-
-  <section class="amenities">
-    <h2>Amenities</h2>
-    <ul>
-      <li>🌴 Swimming Pool</li>
-      <li>🧘 Spa & Massage Services</li>
-      <li>💪 Fitness Center</li>
-      <li>🛏️ Room Service (7 AM - 10 PM)</li>
-      <li>🍳 Complimentary Breakfast</li>
-      <li>🚐 Airport Pickup</li>
-    </ul>
-  </section>
-
-  <!-- Demo Video Section (optional placeholder) -->
-  <section style="padding: 40px 20px; text-align: center; background-color: #eef4fc;">
-    <h2 style="font-size: 1.8rem; margin-bottom: 15px;">🎥 Watch Our AI Concierge in Action</h2>
-    <p style="margin-bottom: 20px;">See how it answers questions, books rooms, and provides 24/7 support.</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-      title="AI Hotel Concierge Demo" frameborder="0" allowfullscreen></iframe>
-  </section>
-
-  <!-- Call-to-Action for Business Clients -->
-  <section style="padding: 50px 20px; background-color: #fff0e5; text-align: center;">
-    <h2 style="font-size: 2rem; margin-bottom: 10px;">Want This for Your Hotel or Airbnb?</h2>
-    <p style="font-size: 1.1rem; margin-bottom: 25px;">We build AI agents tailored to your business — ready in 48 hours.</p>
-    <ul style="list-style: none; padding: 0; margin-bottom: 30px; font-size: 1rem;">
-      <li>✅ Handle bookings & FAQs</li>
-      <li>✅ Save on staffing costs</li>
-      <li>✅ Multilingual guest support</li>
-    </ul>
-    <a href="mailto:youragency@email.com" style="display: inline-block; padding: 12px 25px; background-color: #0077cc; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
-      📩 Book a Free Demo
-    </a>
-  </section>
-
-  <!-- Contact + Footer -->
-  <footer style="text-align: center; padding: 20px; font-size: 0.9rem; color: #666;">
-    <p>📞 +66 912 345 678 | 📧 bookings@palmviewretreat.com</p>
-    <p>&copy; 2025 Palmview Retreat Hotel. All rights reserved.</p>
-    <p>🚀 Powered by <strong>YourAgency</strong></p>
-  </footer>
-
-  <!-- Chatbot Widget -->
-  <button id="chat-toggle">Chat with us!</button>
-
-  <div id="chat-window" class="hidden">
-    <div id="chat-header">
-      <span>PalmView Assistant</span>
-      <button id="chat-close">&times;</button>
-    </div>
-    <div id="chat-messages"></div>
-    <form id="chat-form">
-      <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" />
-      <button type="submit">Send</button>
-    </form>
-  </div>
-
-  <!-- Chat + Popup Scripts -->
-  <script src="chatbot.js"></script>
   <script>
-    setTimeout(() => {
-      alert("👋 Hi there! I'm your AI Concierge. Ask me anything about Palmview Retreat.");
-    }, 5000);
-  </script>
+    async function sendMessage() {
+      const message = document.getElementById('userInput').value;
+      const responseElement = document.getElementById('response');
+      responseElement.innerText = 'Thinking...';
 
+      try {
+        const res = await fetch('/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message }),
+        });
+
+        const data = await res.json();
+        responseElement.innerText = data.reply;
+      } catch (err) {
+        responseElement.innerText = 'Something went wrong.';
+        console.error(err);
+      }
+    }
+  </script>
 </body>
 </html>
