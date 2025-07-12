@@ -22,6 +22,7 @@ chatForm.addEventListener('submit', async (e) => {
   chatInput.value = '';
 
   try {
+    // Use the full backend URL here:
     const res = await fetch('https://palmview-backend.onrender.com/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
