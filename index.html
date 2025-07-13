@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PalmView AI Chatbot</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="chat-toggle">Chat with PalmView AI</button>
+
+  <div id="chat-window" class="hidden">
+    <div id="chat-header">
+      <span>PalmView AI</span>
+      <button id="chat-close">X</button>
+    </div>
+    <div id="chat-messages"></div>
+    <form id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type a message..." />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="chatbot.js"></script>
+</body>
+</html>
