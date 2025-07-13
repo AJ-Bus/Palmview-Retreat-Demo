@@ -35,11 +35,12 @@ chatForm.addEventListener('submit', async (e) => {
 
     const data = await res.json();
 
-    // Simulate delay for realism
-    setTimeout(() => {
+    // Simulate delay and type word by word
+    setTimeout(async () => {
+      await typeMessage('bot', data.reply);
       typingIndicator.classList.add('hidden');
-      appendMessage('bot', data.reply);
-    }, 800); // You can adjust typing delay here
+    }, 500); // optional delay before typing starts
+
   } catch (err) {
     typingIndicator.classList.add('hidden');
     console.error(err);
@@ -47,7 +48,7 @@ chatForm.addEventListener('submit', async (e) => {
   }
 });
 
-// Append message to chat
+// Append user message (instantly)
 function appendMessage(sender, text) {
   const msg = document.createElement('div');
   msg.classList.add('message', sender);
@@ -59,4 +60,23 @@ function appendMessage(sender, text) {
   msg.appendChild(bubble);
   chatMessages.appendChild(msg);
   chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Type bot message word by word
+async function typeMessage(sender, text) {
+  const msg = document.createElement('div');
+  msg.classList.add('message', sender);
+
+  const bubble = document.createElement('div');
+  bubble.classList.add('bubble');
+  msg.appendChild(bubble);
+
+  chatMessages.appendChild(msg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  for (let i = 0; i < text.length; i++) {
+    bubble.textContent += text[i];
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    await new Promise(resolve => setTimeout(resolve, 20)); // Typing speed
+  }
 }
