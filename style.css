@@ -1,3 +1,39 @@
+/* Background */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Video Demo Section */
+.video-demo {
+  padding: 40px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.video-demo h2 {
+  margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #222;
+  color: white;
+  font-size: 14px;
+}
+
 /* Floating Chat Button */
 .chat-toggle-button {
   position: fixed;
@@ -49,6 +85,15 @@
   background: #f9f9f9;
 }
 
+/* Typing Indicator */
+#typing-indicator {
+  font-size: 12px;
+  color: gray;
+  padding: 0 10px;
+  margin-bottom: 6px;
+}
+
+/* Chat Form */
 .chat-form {
   display: flex;
   border-top: 1px solid #ccc;
