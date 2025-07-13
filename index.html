@@ -3,92 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PalmView AI Assistant</title>
+  <title>PalmView Retreat</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Responsive YouTube iframe wrapper */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      padding-top: 25px;
+      height: 0;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
-<script>
-const chatToggle = document.getElementById('chat-toggle');
-const chatWindow = document.getElementById('chat-window');
-const chatClose = document.getElementById('chat-close');
-const chatForm = document.getElementById('chat-form');
-const chatInput = document.getElementById('chat-input');
-const chatMessages = document.getElementById('chat-messages');
-
-chatToggle.addEventListener('click', () => {
-  chatWindow.classList.remove('hidden');
-});
-
-chatClose.addEventListener('click', () => {
-  chatWindow.classList.add('hidden');
-});
-
-chatForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const message = chatInput.value.trim();
-  if (!message) return;
-
-  appendMessage('user', message);
-  chatInput.value = '';
-
-  try {
-    const res = await fetch('https://palmview-backend.onrender.com/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message }),
-    });
-
-    const data = await res.json();
-    appendMessage('bot', data.reply);
-  } catch (err) {
-    console.error(err);
-    appendMessage('bot', "Oops! Something went wrong.");
-  }
-});
-
-function appendMessage(sender, text) {
-  const msg = document.createElement('div');
-  msg.classList.add('message', sender);
-  msg.textContent = text;
-  chatMessages.appendChild(msg);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-</script>
-
 <body>
-  <div class="hero">
-    <h1>🌴 Welcome to PalmView Retreat</h1>
-    <p>Your AI-powered assistant is here to help you 24/7.</p>
-  </div>
-<!-- Chat Toggle Button -->
-<div id="chat-toggle" class="chat-toggle-button">💬</div>
 
-<!-- Floating Chat Widget -->
-<div id="chat-window" class="chat-window hidden">
-  <div class="chat-header">
-    <span>PalmView AI</span>
-    <button id="chat-close">&times;</button>
-  </div>
-  <div id="chat-messages" class="chat-messages"></div>
-  <form id="chat-form" class="chat-form">
-    <input type="text" id="chat-input" placeholder="Ask me anything..." autocomplete="off" />
-    <button type="submit">Send</button>
-  </form>
-</div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to PalmView Retreat</h1>
+    <p>Your virtual assistant is here to help you 24/7</p>
+  </section>
 
-  <button id="chat-toggle" class="chat-button">💬 Chat with PalmView AI</button>
+  <!-- Video Demo Section -->
+  <section class="video-demo">
+    <h2>See PalmBot in Action</h2>
+    <div class="video-wrapper">
+      <iframe 
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        title="PalmBot Demo" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
 
-  <div id="chat-window" class="chat-container hidden">
-    <div id="chat-header">
-      <span>PalmView AI</span>
+  <!-- Floating Chat Widget -->
+  <div id="chat-toggle" class="chat-toggle-button">💬</div>
+
+  <div id="chat-window" class="chat-window hidden">
+    <div id="chat-header" class="chat-header">
+      <span>PalmBot</span>
       <button id="chat-close">✖</button>
     </div>
-    <div id="chat-messages"></div>
-    <form id="chat-form">
-      <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off" />
+    <div id="chat-messages" class="chat-messages"></div>
+    <div id="typing-indicator" class="hidden">PalmBot is typing...</div>
+    <form id="chat-form" class="chat-form">
+      <input type="text" id="chat-input" placeholder="Ask me anything..." required />
       <button type="submit">Send</button>
     </form>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 PalmView Retreat | 📍 Phuket, Thailand</p>
+    <p>📞 +66 1234 5678 | ✉️ info@palmviewretreat.com</p>
+  </footer>
 
   <script src="chatbot.js"></script>
 </body>
