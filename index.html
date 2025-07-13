@@ -3,20 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PalmView AI Chatbot</title>
+  <title>PalmView AI Assistant</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <button id="chat-toggle">Chat with PalmView AI</button>
+  <div class="hero">
+    <h1>🌴 Welcome to PalmView Retreat</h1>
+    <p>Your AI-powered assistant is here to help you 24/7.</p>
+  </div>
 
-  <div id="chat-window" class="hidden">
+  <button id="chat-toggle" class="chat-button">💬 Chat with PalmView AI</button>
+
+  <div id="chat-window" class="chat-container hidden">
     <div id="chat-header">
       <span>PalmView AI</span>
-      <button id="chat-close">X</button>
+      <button id="chat-close">✖</button>
     </div>
     <div id="chat-messages"></div>
     <form id="chat-form">
-      <input type="text" id="chat-input" placeholder="Type a message..." />
+      <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off" />
       <button type="submit">Send</button>
     </form>
   </div>
