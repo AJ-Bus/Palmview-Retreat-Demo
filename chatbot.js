@@ -6,12 +6,10 @@ const chatInput = document.getElementById('chat-input');
 const chatMessages = document.getElementById('chat-messages');
 const typingIndicator = document.getElementById('typing-indicator');
 
-// Show chat window with greeting
+// Show chat window
 chatToggle.addEventListener('click', () => {
   chatWindow.classList.remove('hidden');
-  if (!chatMessages.innerHTML.includes("PalmBot")) {
-    appendMessage('bot', "🌴 Welcome to Palmview Retreat! I’m Ava, your virtual assistant. How may I help you today?");
-  }
+  appendMessage('bot', "🌴 Welcome to PalmView Retreat! I’m Ava, your virtual assistant. How may I help you today?");
 });
 
 // Hide chat window
@@ -33,25 +31,23 @@ chatForm.addEventListener('submit', async (e) => {
     const res = await fetch('https://palmview-backend.onrender.com/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message,
-        systemPrompt: "You are a polite hotel receptionist for Palmview Retreat. Greet guests, answer questions about amenities, availability, and pricing. Suggest activities. Be charming and concise."
-      }),
+      body: JSON.stringify({ message }),
     });
 
     const data = await res.json();
     const reply = data.reply;
 
-    typingIndicator.classList.add('hidden');
-    typeMessage('bot', reply);
+    setTimeout(() => {
+      typingIndicator.classList.add('hidden');
+      typeReply(reply);
+    }, 600);
   } catch (err) {
     typingIndicator.classList.add('hidden');
-    console.error(err);
     appendMessage('bot', "Oops! Something went wrong.");
   }
 });
 
-// Append message to chat instantly
+// Append messages
 function appendMessage(sender, text) {
   const msg = document.createElement('div');
   msg.classList.add('message', sender);
@@ -65,28 +61,21 @@ function appendMessage(sender, text) {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Type message letter by letter
-function typeMessage(sender, text) {
+// Typing effect
+function typeReply(text) {
   const msg = document.createElement('div');
-  msg.classList.add('message', sender);
+  msg.classList.add('message', 'bot');
 
   const bubble = document.createElement('div');
   bubble.classList.add('bubble');
   msg.appendChild(bubble);
   chatMessages.appendChild(msg);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
 
   let i = 0;
-  const typingSpeed = 20;
-
-  function type() {
-    if (i < text.length) {
-      bubble.textContent += text.charAt(ihttps://github.com/AJ-Bus/Palmview-Retreat-Demo/commit/ddcf0d1a491d1800a28b511ac87e527a8b1ef6cd);
-      i++;
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-      setTimeout(type, typingSpeed);
-    }
-  }
-
-  type();
+  const typing = setInterval(() => {
+    bubble.textContent += text.charAt(i);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    i++;
+    if (i >= text.length) clearInterval(typing);
+  }, 30);
 }

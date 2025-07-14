@@ -8,17 +8,6 @@
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Rooms & Rates</a></li>
-      <li><a href="#">Book Now</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
-
   <!-- Hero Section -->
   <section class="hero">
     <h1>Welcome to PalmView Retreat</h1>
@@ -28,20 +17,21 @@
   <!-- Video Demo Section -->
   <section class="video-demo">
     <h2>See PalmBot in Action</h2>
-    <iframe width="300" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="PalmBot Demo" frameborder="0" allowfullscreen></iframe>
+    <iframe width="300" height="170" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+      title="Demo Video" frameborder="0" allowfullscreen></iframe>
   </section>
 
   <!-- Floating Chat Widget -->
-  <div id="chat-toggle" class="chat-toggle-button">💬</div>
+  <div id="chat-toggle">💬</div>
 
-  <div id="chat-window" class="chat-window hidden">
-    <div id="chat-header" class="chat-header">
+  <div id="chat-window" class="hidden">
+    <div id="chat-header">
       <span>PalmBot</span>
       <button id="chat-close">✖</button>
     </div>
-    <div id="chat-messages" class="chat-messages"></div>
+    <div id="chat-messages"></div>
     <div id="typing-indicator" class="hidden">PalmBot is typing...</div>
-    <form id="chat-form" class="chat-form">
+    <form id="chat-form">
       <input type="text" id="chat-input" placeholder="Ask me anything..." required />
       <button type="submit">Send</button>
     </form>
