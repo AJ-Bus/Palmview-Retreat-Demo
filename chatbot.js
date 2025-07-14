@@ -6,17 +6,11 @@ const chatInput = document.getElementById('chat-input');
 const chatMessages = document.getElementById('chat-messages');
 const typingIndicator = document.getElementById('typing-indicator');
 
-let firstOpen = true;
-
-// Show chat window
+// Show chat window with greeting
 chatToggle.addEventListener('click', () => {
   chatWindow.classList.remove('hidden');
-
-  if (firstOpen) {
-    firstOpen = false;
-    setTimeout(() => {
-      appendMessage('bot', "🌴 Welcome to Palmview Retreat! I’m Ava, your virtual assistant. How may I help you today?");
-    }, 500);
+  if (!chatMessages.innerHTML.includes("PalmBot")) {
+    appendMessage('bot', "🌴 Welcome to Palmview Retreat! I’m Ava, your virtual assistant. How may I help you today?");
   }
 });
 
@@ -40,25 +34,24 @@ chatForm.addEventListener('submit', async (e) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        message: message,
-        systemPrompt: "You are a polite hotel receptionist named Ava for Palmview Retreat in Phuket, Thailand. Greet guests, answer questions about rooms, pricing, spa, beach activities, and politely handle any other requests. Be concise, warm, and helpful."
-      })
+        message,
+        systemPrompt: "You are a polite hotel receptionist for Palmview Retreat. Greet guests, answer questions about amenities, availability, and pricing. Suggest activities. Be charming and concise."
+      }),
     });
 
     const data = await res.json();
+    const reply = data.reply;
 
-    setTimeout(() => {
-      typingIndicator.classList.add('hidden');
-      typeMessageSlowly('bot', data.reply);
-    }, 500);
+    typingIndicator.classList.add('hidden');
+    typeMessage('bot', reply);
   } catch (err) {
     typingIndicator.classList.add('hidden');
     console.error(err);
-    appendMessage('bot', "Oops! Something went wrong. Please try again.");
+    appendMessage('bot', "Oops! Something went wrong.");
   }
 });
 
-// Append a message instantly
+// Append message to chat instantly
 function appendMessage(sender, text) {
   const msg = document.createElement('div');
   msg.classList.add('message', sender);
@@ -72,8 +65,8 @@ function appendMessage(sender, text) {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Type message word-by-word
-function typeMessageSlowly(sender, fullText) {
+// Type message letter by letter
+function typeMessage(sender, text) {
   const msg = document.createElement('div');
   msg.classList.add('message', sender);
 
@@ -81,17 +74,19 @@ function typeMessageSlowly(sender, fullText) {
   bubble.classList.add('bubble');
   msg.appendChild(bubble);
   chatMessages.appendChild(msg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 
-  let index = 0;
+  let i = 0;
+  const typingSpeed = 20;
 
-  function typeNextWord() {
-    if (index < fullText.length) {
-      bubble.textContent += fullText[index];
-      index++;
+  function type() {
+    if (i < text.length) {
+      bubble.textContent += text.charAt(ihttps://github.com/AJ-Bus/Palmview-Retreat-Demo/commit/ddcf0d1a491d1800a28b511ac87e527a8b1ef6cd);
+      i++;
       chatMessages.scrollTop = chatMessages.scrollHeight;
-      setTimeout(typeNextWord, 20); // Speed can be adjusted here
+      setTimeout(type, typingSpeed);
     }
   }
 
-  typeNextWord();
+  type();
 }
